@@ -11,7 +11,6 @@ public class LogLine {
         int firstIndex = logLine.indexOf("[") + 1;
         int lastIndex = logLine.indexOf("]");
         String rawLogLevel = logLine.substring(firstIndex, lastIndex);
-        System.err.println(rawLogLevel);
 
         LogLevel finalLogLevel = getLogLevelEnum(rawLogLevel);
         return finalLogLevel;
@@ -35,7 +34,7 @@ public class LogLine {
                 return LogLevel.ERROR;
             case "FTL":
                 return LogLevel.FATAL;
-                default:
+            default:
                 return LogLevel.UNKNOWN;
         }
     }
