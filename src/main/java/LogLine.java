@@ -17,7 +17,23 @@ public class LogLine {
     }
 
     public String getOutputForShortLog() {
-        return logLine;
+        LogLevel searchedLogLevel = getLogLevel();
+        int logLevelCode = searchedLogLevel.getLogLevelCode();
+        System.out.println(logLevelCode);
+        
+        int firstIndex = logLine.indexOf("[");
+        int lastIndex = logLine.indexOf(":");
+        String rawLogLevel = logLine.substring(firstIndex, lastIndex);
+        System.out.println(rawLogLevel);
+        
+        int spaceIndex = lastIndex + 1;
+        System.out.println(spaceIndex);
+        String space = logLine.substring(spaceIndex, spaceIndex + 1);
+        String noSpaceString = logLine.replaceFirst(space, "");
+        System.out.println(noSpaceString);
+
+        String newString = noSpaceString.replace(rawLogLevel, Integer.toString(logLevelCode));
+        return newString;
     }
 
     public LogLevel getLogLevelEnum(String rawString) {
